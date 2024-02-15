@@ -1,5 +1,7 @@
 package ali.su.cft2j02;
 
+import java.util.Objects;
+
 public class Fraction implements Fractionable{
     private int num;
     private int denom;
@@ -10,7 +12,7 @@ public class Fraction implements Fractionable{
     }
 
     @Override
-    @Cache
+    @Cache(1000)
     public double doubleValue() {
         return (double) num / denom;
     }
@@ -25,5 +27,18 @@ public class Fraction implements Fractionable{
     @Mutator
     public void setDenom(int denom) {
         this.denom = denom;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fraction fraction = (Fraction) o;
+        return num == fraction.num && denom == fraction.denom;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(num, denom);
     }
 }
