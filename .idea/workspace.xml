@@ -4,23 +4,63 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcc24ebf-d284-420c-a07a-82b949be1cfe" name="Changes" comment="initial commit">
+    <list default="true" id="bcc24ebf-d284-420c-a07a-82b949be1cfe" name="Changes" comment="based on ConcurrentHashMap clean debug">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ali/su/cft2j02/BackgroundJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ali/su/cft2j02/Cache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ali/su/cft2j02/CacheInvocationsHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ali/su/cft2j02/CacheUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ali/su/cft2j02/Fraction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ali/su/cft2j02/Fractionable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ali/su/cft2j02/Mutator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ali/su/cft2j02/FractionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ali/su/cft2j02/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ali/su/cft2j02/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="manual-sync" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
+  </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="onto" value="7243cc7eeb0831ac1fe28664edf86936634e6bed" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2cBJZanEyrnv6jYfLUdTCOyHS5g" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -29,18 +69,61 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "new",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/tor/workspace/java/works_bc_cursCFT2J_02/su03multithread/src/main/java/ali/su/learn/Main.java",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ali.su.cft2j02" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ali.su.cft2j02.Main" />
+      <module name="su03multithread" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ali.su.cft2j02.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-8f899f12" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -50,6 +133,18 @@
       <option name="presentableId" value="Default" />
       <updated>1707579098918</updated>
       <workItem from="1707579099957" duration="1287000" />
+      <workItem from="1707652040859" duration="3259000" />
+      <workItem from="1707664618414" duration="5546000" />
+      <workItem from="1707718708110" duration="2093000" />
+      <workItem from="1707722162050" duration="1203000" />
+      <workItem from="1707739791686" duration="628000" />
+      <workItem from="1707804467362" duration="3831000" />
+      <workItem from="1707892795043" duration="597000" />
+      <workItem from="1707901188740" duration="522000" />
+      <workItem from="1707902162841" duration="7126000" />
+      <workItem from="1707978402578" duration="18304000" />
+      <workItem from="1708068290366" duration="14337000" />
+      <workItem from="1708187323147" duration="1103000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -59,7 +154,95 @@
       <option name="project" value="LOCAL" />
       <updated>1707580184474</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="initial commit">
+      <option name="closed" value="true" />
+      <created>1707652781554</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1707652781555</updated>
+    </task>
+    <task id="LOCAL-00003" summary="initial commit">
+      <option name="closed" value="true" />
+      <created>1707653296139</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1707653296139</updated>
+    </task>
+    <task id="LOCAL-00004" summary="based on ConcurrentHashMap with debug">
+      <option name="closed" value="true" />
+      <created>1708013396154</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708013396154</updated>
+    </task>
+    <task id="LOCAL-00005" summary="based on ConcurrentHashMap clean debug">
+      <option name="closed" value="true" />
+      <created>1708013777609</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708013777609</updated>
+    </task>
+    <task id="LOCAL-00006" summary="based on ConcurrentHashMap clean debug">
+      <option name="closed" value="true" />
+      <created>1708013849773</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708013849773</updated>
+    </task>
+    <task id="LOCAL-00007" summary="manual sync with debug">
+      <option name="closed" value="true" />
+      <created>1708097860525</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1708097860525</updated>
+    </task>
+    <task id="LOCAL-00008" summary="manual sync clean debug">
+      <option name="closed" value="true" />
+      <created>1708097996280</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708097996280</updated>
+    </task>
+    <task id="LOCAL-00009" summary="based on ConcurrentHashMap clean debug">
+      <option name="closed" value="true" />
+      <created>1708098078746</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708098078746</updated>
+    </task>
+    <task id="LOCAL-00010" summary="based on ConcurrentHashMap with debug">
+      <option name="closed" value="true" />
+      <created>1708098498325</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708098498325</updated>
+    </task>
+    <task id="LOCAL-00011" summary="based on ConcurrentHashMap with debug">
+      <option name="closed" value="true" />
+      <created>1708098732303</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708098732303</updated>
+    </task>
+    <task id="LOCAL-00012" summary="based on ConcurrentHashMap clean debug">
+      <option name="closed" value="true" />
+      <created>1708099570641</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708099570641</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -70,7 +253,15 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="161" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="100" />
+                  <entry key="Table.Default.Hash.ColumnIdWidth" value="65" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -78,17 +269,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ali/su/learn/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="manual sync with debug" />
+    <MESSAGE value="manual sync clean debug" />
+    <MESSAGE value="manual sync with debug" />
+    <MESSAGE value="based on ConcurrentHashMap clean debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="based on ConcurrentHashMap clean debug" />
   </component>
 </project>
