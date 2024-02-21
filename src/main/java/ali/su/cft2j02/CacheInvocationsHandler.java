@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CacheInvocationsHandler implements InvocationHandler {
+public class CacheInvocationsHandler implements InvocationHandler, CacheCleanable {
     private final Object originalObject;
     private final Map<String, TimestampedObject> cacheWithTtl = new HashMap<>();
-    private final BackgroundJob cacheCleaner = new BackgroundJob(this::clearCache);
+    private final BackgroundJob cacheCleaner = new BackgroundJob(this::clearCache, 500);
+    private final TimeToLive timeToLive;
 
-    public CacheInvocationsHandler(Object originalObject) {
+    public CacheInvocationsHandler(Object originalObject, TimeToLive timeToLive) {
         this.originalObject = originalObject;
+        this.timeToLive = timeToLive;
     }
 
     @Override
@@ -22,15 +24,15 @@ public class CacheInvocationsHandler implements InvocationHandler {
         Method classMethod = getClassMethod(originalObject, method);
 
         if (classMethod.isAnnotationPresent(Cache.class)) {
-            var ttl = classMethod.getAnnotation(Cache.class).value();
+            timeToLive.setTtl(classMethod.getAnnotation(Cache.class).value());
             synchronized (cacheWithTtl) {
                 var cacheKey = String.valueOf(method.hashCode()) + String.valueOf(originalObject.hashCode());
                 if (cacheWithTtl.containsKey(cacheKey)) {
                     retObject = cacheWithTtl.get(cacheKey).obj;
-                    cacheWithTtl.get(cacheKey).refreshTtl(ttl);
+                    cacheWithTtl.get(cacheKey).refreshTtl(timeToLive);
                 } else {
                     retObject = method.invoke(originalObject, args);
-                    cacheWithTtl.put(cacheKey, new TimestampedObject(retObject, ttl));
+                    cacheWithTtl.put(cacheKey, new TimestampedObject(retObject, timeToLive));
                 }
             }
             return retObject;
@@ -46,10 +48,10 @@ public class CacheInvocationsHandler implements InvocationHandler {
         return obj.getClass().getMethod(meth.getName(), meth.getParameterTypes());
     }
 
-    public void clearCache() {
+    private void clearCache() {
         var keysToRemove = new ArrayList<String>();
         cacheWithTtl.forEach((key, val) -> {
-            if (val.ttl < System.currentTimeMillis()) keysToRemove.add(key);
+            if (val.ttl <= timeToLive.getCurrentTimeMillis()) keysToRemove.add(key);
         });
         keysToRemove.forEach((key) -> {
             synchronized (cacheWithTtl) {
@@ -58,17 +60,27 @@ public class CacheInvocationsHandler implements InvocationHandler {
         });
     }
 
+    @Override
+    public BackgroundJob getCacheCleaner() {
+        return cacheCleaner;
+    }
+
+    @Override
+    public TimeToLive getTimeToLive() {
+        return timeToLive;
+    }
+
     private static class TimestampedObject {
         Object obj;
         long ttl;
 
-        TimestampedObject(Object obj, long milliSeconds) {
+        TimestampedObject(Object obj, TimeToLive timeToLive) {
             this.obj = obj;
-            this.ttl = System.currentTimeMillis() + milliSeconds;
+            this.ttl = timeToLive.getCurrentTimeMillis() + timeToLive.getTtl();
         }
 
-        void refreshTtl(long milliSeconds) {
-            this.ttl = System.currentTimeMillis() + milliSeconds;
+        void refreshTtl( TimeToLive timeToLive) {
+            this.ttl = timeToLive.getCurrentTimeMillis() + timeToLive.getTtl();
         }
 
         @Override

@@ -7,6 +7,6 @@ public class CacheUtils {
         if (origObj == null) return null;
         var origObjClassLoader = origObj.getClass().getClassLoader();
         var origObjInterfaces = origObj.getClass().getInterfaces();
-        return (T) Proxy.newProxyInstance(origObjClassLoader, origObjInterfaces, new CacheInvocationsHandler(origObj));
+        return (T) Proxy.newProxyInstance(origObjClassLoader, origObjInterfaces, new CacheInvocationsHandler(origObj, new Ttl()));
     }
 }

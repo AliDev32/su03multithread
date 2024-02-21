@@ -5,12 +5,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Proxy;
+
 class FractionTest {
 
     Fraction obj;
     FractionableLoggable loggedObj;
     Fractionable cachedObj;
     FractionableLoggable loggedCachedObj;
+    CacheCleanable invocationHandler;
 
     @BeforeEach
     void init() {
@@ -18,6 +21,8 @@ class FractionTest {
         loggedObj = new FractionableLoggerProxy(obj);
         cachedObj = CacheUtils.cache(loggedObj);
         loggedCachedObj = new FractionableLoggerProxy(cachedObj);
+        invocationHandler = (CacheCleanable) Proxy.getInvocationHandler(cachedObj);
+        invocationHandler.getCacheCleaner().interrupt();
     }
     @Test
     @DisplayName("Проверка кэширования последнего вызова")
@@ -53,6 +58,9 @@ class FractionTest {
     @Test
     @DisplayName("Проверка удаления из кэша невостребованных вызовов")
     void cacheClean() {
+        invocationHandler.getTimeToLive().setIsConsiderTtl(false);
+        invocationHandler.getCacheCleaner().interrupt();
+
         loggedCachedObj.doubleValue();
 
         loggedCachedObj.setNum(2);
@@ -61,11 +69,7 @@ class FractionTest {
         loggedCachedObj.setNum(1);
         loggedCachedObj.doubleValue();
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        invocationHandler.getCacheCleaner().executeTask();
 
         var prevLoggedObjInvokesCnt = loggedObj.getCachedInvokesCount();
         var prevLoggedCacheInvokesCnt = loggedCachedObj.getCachedInvokesCount();
@@ -88,13 +92,11 @@ class FractionTest {
     @DisplayName("Проверка сохранения в кэше востребованного объекта ")
     void oftenObjectRemainsInCache() {
         var methodInvocationsCount = 10;
+        invocationHandler.getCacheCleaner().interrupt();
+
         for (int i = 0; i < methodInvocationsCount; i++) {
-            try {
-                loggedCachedObj.doubleValue();
-                Thread.sleep(900);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            loggedCachedObj.doubleValue();
+            invocationHandler.getCacheCleaner().executeTask();
         }
         Assertions.assertTrue(
                 loggedObj.getCachedInvokesCount() == 1 && loggedCachedObj.getCachedInvokesCount() == methodInvocationsCount,
